@@ -12,6 +12,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    PostRepository postRepository;
+
     @GetMapping("/users")
     public List<User> index() {
         return userRepository.findAll();
@@ -21,6 +24,11 @@ public class UserController {
     public User show(@PathVariable String id) {
         Long userId = Long.parseLong(id);
         return userRepository.findOne(userId);
+    }
+
+    @GetMapping("users/{id}/posts")
+    public List<Post> getPost(@PathVariable Long id) {
+        return postRepository.findByUserId(id);
     }
 
     @PostMapping("/users/search")

@@ -10,4 +10,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findByContentContaining(String text);
 
+    List<Post> findByUserId(Long id);
+
 }

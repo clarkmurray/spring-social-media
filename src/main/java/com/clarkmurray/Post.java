@@ -32,9 +32,9 @@ public class Post {
     @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_post_userid"))
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="post_id")
-    private List<Comment> comments = new ArrayList<>();
+//    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name="post_id")
+//    private List<Comment> comments = new ArrayList<>();
 
     @CreationTimestamp
     private Timestamp createdAt;
