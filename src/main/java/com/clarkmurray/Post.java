@@ -1,17 +1,22 @@
 package com.clarkmurray;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Entity @Getter
+@Entity
+@Getter
 @Setter
 @JsonPropertyOrder({ "id", "content", "createdAt", "updatedAt"})
+//@JsonIdentityInfo(
+//        generator = ObjectIdGenerators.PropertyGenerator.class,
+//        property = "id")
 public class Post {
 
     @Id
@@ -20,8 +25,9 @@ public class Post {
 
     private String content;
 
+    private Long userId;
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "userId", referencedColumnName = "id", insertable = false, updatable = false, foreignKey = @ForeignKey(name = "FK_post_userid"))
     private User user;
 
     @CreationTimestamp
